@@ -1,0 +1,24 @@
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div class="filters">
+  <mat-form-field appearance="outline" class="search-box">
+    <mat-label>Search events...</mat-label>
+    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="filterEvents()">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="category-box">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="filterEvents()">
+      <mat-option value="">All Categories</mat-option>
+      <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="event-grid">
+  <div *ngFor="let event of filteredEvents" class="grid-item">
+    <app-event-card [event]="event"></app-event-card>
+  </div>
+</div>
+<div *ngIf="!loading && filteredEvents.length === 0" class="no-events">
+  <p>No events found.</p>
+</div>

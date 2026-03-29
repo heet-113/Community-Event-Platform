@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <span routerLink="/" class="logo">Community Events</span>
+  <span class="spacer"></span>
+  
+  <ng-container *ngIf="isLoggedIn$ | async; else loggedOut">
+    <button mat-button routerLink="/dashboard">Dashboard</button>
+    <button mat-raised-button color="accent" routerLink="/create-event">Create Event</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-container>
+
+  <ng-template #loggedOut>
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-raised-button color="accent" routerLink="/register">Register</button>
+  </ng-template>
+</mat-toolbar>

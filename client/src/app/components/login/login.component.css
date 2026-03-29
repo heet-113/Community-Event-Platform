@@ -1,0 +1,18 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+}
+mat-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+.error-msg {
+  color: red;
+  margin-bottom: 10px;
+}
+.w-100 { width: 100%; }
+.mt-3 { margin-top: 16px; }
+.text-center { text-align: center; }

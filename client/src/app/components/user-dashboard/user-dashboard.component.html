@@ -1,0 +1,61 @@
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div class="dashboard-container" *ngIf="!loading && user">
+  <div class="profile-header">
+    <mat-icon class="avatar-icon">account_circle</mat-icon>
+    <div class="user-info">
+      <h1>{{ user.name }}</h1>
+      <p>{{ user.email }}</p>
+      <p class="joined">Joined: {{ user.createdAt | date:'mediumDate' }}</p>
+    </div>
+    <div class="actions">
+      <button mat-raised-button color="accent" routerLink="/create-event">
+        <mat-icon>add</mat-icon> Create Event
+      </button>
+    </div>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="My RSVPs ({{ rsvpEvents.length }})">
+      <div class="tab-content">
+        <div *ngIf="rsvpEvents.length === 0" class="empty-state">
+          <p>You haven't RSVPed to any events yet.</p>
+          <button mat-button color="primary" routerLink="/">Browse Events</button>
+        </div>
+        
+        <div class="event-grid">
+          <div *ngFor="let event of rsvpEvents" class="grid-item">
+            <app-event-card [event]="event"></app-event-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="My Created Events ({{ createdEvents.length }})">
+      <div class="tab-content">
+        <div *ngIf="createdEvents.length === 0" class="empty-state">
+          <p>You haven't created any events yet.</p>
+          <button mat-button color="accent" routerLink="/create-event">Create Event</button>
+        </div>
+
+        <div class="event-grid">
+          <div *ngFor="let event of createdEvents" class="grid-item">
+            <mat-card class="admin-card">
+              <mat-card-header>
+                <mat-card-title>{{ event.title }}</mat-card-title>
+                <mat-card-subtitle>{{ event.date | date:'medium' }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p><strong>Attendees:</strong> {{ event.attendees.length }} / {{ event.maxAttendees }}</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button color="primary" [routerLink]="['/events', event._id]">View</button>
+                <button mat-button color="accent" [routerLink]="['/edit-event', event._id]">Edit</button>
+                <button mat-button color="warn" (click)="deleteEvent(event._id)">Delete</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

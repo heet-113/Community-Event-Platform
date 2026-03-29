@@ -1,0 +1,16 @@
+<mat-card class="event-card">
+  <img mat-card-image [src]="event.bannerImage || 'https://picsum.photos/400/200'" alt="Event image">
+  <mat-card-content>
+    <div class="category-badge">{{ event.category }}</div>
+    <mat-card-title>{{ event.title }}</mat-card-title>
+    <mat-card-subtitle>{{ event.date | date:'medium' }}</mat-card-subtitle>
+    
+    <div class="details">
+      <p><mat-icon>location_on</mat-icon> {{ event.location.city }}</p>
+      <p><mat-icon>group</mat-icon> {{ event.attendees.length || 0 }} RSVPs</p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" [routerLink]="['/events', event._id]">View Details</button>
+  </mat-card-actions>
+</mat-card>

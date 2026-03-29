@@ -1,0 +1,42 @@
+.event-detail-container {
+  padding-bottom: 40px;
+}
+.header-image {
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+.content-wrapper {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.main-content {
+  flex: 2;
+  min-width: 300px;
+}
+.sidebar {
+  flex: 1;
+  min-width: 300px;
+}
+.badge {
+  background-color: #ffc107;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+h1 { margin: 0 0 10px 0; font-size: 32px; }
+.host { color: #666; font-size: 16px; margin-bottom: 24px; }
+.description-box { margin-bottom: 40px; font-size: 16px; line-height: 1.6; }
+.info-item { display: flex; gap: 16px; margin-bottom: 24px; }
+.info-item mat-icon { color: #673ab7; margin-top: 2px; }
+.info-item p { margin: 4px 0 0 0; color: #555; }
+.map-container { margin: 20px 0; border-radius: 8px; overflow: hidden; }
+.w-100 { width: 100%; padding: 8px 0; }
+.progress { margin: 16px 0; height: 8px; border-radius: 4px; }

@@ -1,0 +1,71 @@
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div class="event-detail-container" *ngIf="event && !loading">
+  <div class="header-image" [style.backgroundImage]="'url(' + (event.bannerImage || 'https://picsum.photos/1200/400') + ')'"></div>
+  
+  <div class="content-wrapper">
+    <div class="main-content">
+      <div class="badge">{{ event.category }}</div>
+      <h1>{{ event.title }}</h1>
+      <p class="host">Hosted by <strong>{{ event.createdBy.name }}</strong></p>
+      
+      <div class="description-box">
+        <h3>About this event</h3>
+        <p>{{ event.description }}</p>
+      </div>
+
+      <div class="attendees-section">
+        <h3>Attendees ({{ event.attendees.length }} / {{ event.maxAttendees }})</h3>
+        <mat-progress-bar mode="determinate" [value]="rsvpProgress" class="progress"></mat-progress-bar>
+        
+        <mat-list>
+          <mat-list-item *ngFor="let attendee of event.attendees">
+            <mat-icon matListItemIcon>person</mat-icon>
+            <div matListItemTitle>{{ attendee.name?.split(' ')[0] || 'Anonymous' }}</div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <mat-card>
+        <mat-card-content>
+          <div class="info-item">
+            <mat-icon>calendar_today</mat-icon>
+            <div>
+              <strong>Date and time</strong>
+              <p>{{ event.date | date:'fullDate' }}</p>
+              <p>{{ event.date | date:'shortTime' }}</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <mat-icon>location_on</mat-icon>
+            <div>
+              <strong>Location</strong>
+              <p>{{ event.location.address }}</p>
+              <p>{{ event.location.city }}</p>
+            </div>
+          </div>
+
+          <div class="map-container" *ngIf="mapUrl">
+            <iframe [src]="mapUrl" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+          
+          <div class="action-btn">
+            <button *ngIf="isLoggedIn; else loginPrompt"
+                    mat-raised-button 
+                    [color]="hasRSVPed ? 'warn' : 'accent'" 
+                    class="w-100" 
+                    [disabled]="!hasRSVPed && event.attendees.length >= event.maxAttendees"
+                    (click)="toggleRsvp()">
+              {{ hasRSVPed ? 'Cancel RSVP' : (event.attendees.length >= event.maxAttendees ? 'Event Full' : 'RSVP Now') }}
+            </button>
+            <ng-template #loginPrompt>
+              <button mat-raised-button color="primary" class="w-100" routerLink="/login">Login to RSVP</button>
+            </ng-template>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

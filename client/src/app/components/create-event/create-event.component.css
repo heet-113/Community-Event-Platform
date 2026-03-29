@@ -1,0 +1,14 @@
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.error-msg { color: red; margin-bottom: 16px; }
+.w-100 { width: 100%; }
+.w-50 { width: 50%; }
+.pr-2 { padding-right: 8px; box-sizing: border-box; }
+.pl-2 { padding-left: 8px; box-sizing: border-box; }
+.row { display: flex; }
+.location-group { margin: 16px 0; padding: 16px; background-color: #f9f9f9; border-radius: 8px; }
+.location-group h4 { margin-top: 0; }
+.actions { display: flex; justify-content: flex-end; gap: 16px; margin-top: 24px; }

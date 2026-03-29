@@ -1,0 +1,19 @@
+.filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.search-box { flex: 2; }
+.category-box { flex: 1; }
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+.no-events {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 18px;
+}
